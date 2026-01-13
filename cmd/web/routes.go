@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/ZOLUXERO/go-test/pkg/config"
-	"github.com/ZOLUXERO/go-test/pkg/handlers"
+	"github.com/ZOLUXERO/go-test/internal/config"
+	"github.com/ZOLUXERO/go-test/internal/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )

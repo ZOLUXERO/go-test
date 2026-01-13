@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ZOLUXERO/go-test/pkg/config"
-	"github.com/ZOLUXERO/go-test/pkg/models"
-	"github.com/ZOLUXERO/go-test/pkg/render"
+	"github.com/ZOLUXERO/go-test/internal/config"
+	"github.com/ZOLUXERO/go-test/internal/models"
+	"github.com/ZOLUXERO/go-test/internal/render"
 )
 
 // Using Repository pattern

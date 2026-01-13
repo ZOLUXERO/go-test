@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/ZOLUXERO/go-test/pkg/config"
-	"github.com/ZOLUXERO/go-test/pkg/models"
+	"github.com/ZOLUXERO/go-test/internal/config"
+	"github.com/ZOLUXERO/go-test/internal/models"
 	"github.com/justinas/nosurf"
 )
 

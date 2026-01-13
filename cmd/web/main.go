@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ZOLUXERO/go-test/pkg/config"
-	"github.com/ZOLUXERO/go-test/pkg/handlers"
-	"github.com/ZOLUXERO/go-test/pkg/render"
+	"github.com/ZOLUXERO/go-test/internal/config"
+	"github.com/ZOLUXERO/go-test/internal/handlers"
+	"github.com/ZOLUXERO/go-test/internal/render"
 	"github.com/alexedwards/scs/v2"
 )
 
