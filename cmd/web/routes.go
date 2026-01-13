@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/ZOLUXERO/go-test/cmd/pkg/config"
-	"github.com/ZOLUXERO/go-test/cmd/pkg/handlers"
+	"github.com/ZOLUXERO/go-test/pkg/config"
+	"github.com/ZOLUXERO/go-test/pkg/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
@@ -22,8 +22,10 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/generals-quarters", handlers.Repo.Generals)
 	mux.Get("/majors-suite", handlers.Repo.Majors)
 	mux.Get("/search-availability", handlers.Repo.Availability)
-	mux.Post("/search-availability", handlers.Repo.Availability)
+	mux.Post("/search-availability", handlers.Repo.PostAvailability)
+	mux.Post("/search-availability-json", handlers.Repo.AvailabilityJSON)
 	mux.Get("/contact", handlers.Repo.Contact)
+	mux.Get("/make-reservation", handlers.Repo.Reservation)
 
 	// Get static files
 	fileServer := http.FileServer(http.Dir("./static/"))
