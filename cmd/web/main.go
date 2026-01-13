@@ -1,12 +1,15 @@
 package main
 
 import (
+	"encoding/gob"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/ZOLUXERO/go-test/internal/config"
 	"github.com/ZOLUXERO/go-test/internal/handlers"
+	"github.com/ZOLUXERO/go-test/internal/models"
 	"github.com/ZOLUXERO/go-test/internal/render"
 	"github.com/alexedwards/scs/v2"
 )
@@ -18,20 +21,25 @@ var session *scs.SessionManager
 
 // main is the main application function
 func main() {
+	// what am I going to put in the session
+	gob.Register(models.Reservation{})
+
 	// change this to true when in production
 	app.InProduction = false
 
+	// set up the session
 	// manage sessions, you could use (redis, mysql, postgresql)
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
 	session.Cookie.SameSite = http.SameSiteLaxMode
 	session.Cookie.Secure = app.InProduction
+
 	app.Session = session
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("cannot create template cache", err)
 	}
 
 	app.TemplateCache = tc
@@ -42,7 +50,7 @@ func main() {
 
 	render.NewTemplates(&app)
 
-	log.Println("Starting application on port:", portNumber)
+	fmt.Println(fmt.Sprintf("Staring application on port %s", portNumber))
 
 	srv := &http.Server{
 		Addr:    portNumber,
@@ -50,5 +58,7 @@ func main() {
 	}
 
 	err = srv.ListenAndServe()
-	log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
